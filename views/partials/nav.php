@@ -15,6 +15,7 @@
                 <a class="navbar-item" href="/answer">
                     Answer
                 </a>
+                <?php if(auth()): ?>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         Admin
@@ -29,20 +30,34 @@
                         </a>
                     </div>
                 </div>
-
+                <?php endif; ?>
             </div>
 
             <div class="navbar-end">
+                <?php if(auth()): ?>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            <?=auth()->email?>
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="/logout">
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                <?php else: ?>
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary">
+                        <a href="/register" class="button is-primary">
                             <strong>Sign up</strong>
                         </a>
-                        <a class="button is-light">
+                        <a href="/login" class="button is-light">
                             Log in
                         </a>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </nav>

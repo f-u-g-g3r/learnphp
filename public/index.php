@@ -1,12 +1,17 @@
-<?php 
+<?php
+
+
+use App\Exceptions\NotFoundException;
+use App\Router;
 
 spl_autoload_register(function($class) {
     $class = substr($class, 4);
     require_once __DIR__ . "/../src/$class.php";
 });
 
-use App\Exceptions\NotFoundException;
-use App\Router;
+require  __DIR__ . '/../vendor/autoload.php';
+
+session_start();
 
 include __DIR__ . '/../routes.php';
 include __DIR__ . '/../helpers.php';

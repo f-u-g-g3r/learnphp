@@ -6,6 +6,16 @@ use App\Exceptions\NotFoundException;
 use App\Models\Post;
 
 class PostsController {
+
+    public function __construct()
+    {
+        if (!auth()) {
+            header('Location: /login');
+        }
+    }
+
+
+
     public function index() {
         $posts = Post::all();
         view('posts/index', compact('posts'));
@@ -16,6 +26,15 @@ class PostsController {
     }
 
     public function store() {
+        var_dump($_POST);
+        var_dump($_FILES);
+        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        var_dump($ext);
+        $filename = md5(microtime() . $_FILES['image']['name']) . '.' . $ext;
+        move_uploaded_file(
+            $_FILES['image']['tmp_name'], __DIR__ . '/../../public/uploads/' . $filename
+        );
+        die();
         $post = new Post();
         $post->title = $_POST['title'];
         $post->body = $_POST['body'];
