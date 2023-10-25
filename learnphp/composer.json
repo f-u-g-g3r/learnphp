@@ -12,5 +12,7 @@
             "email": "artjom.kuznetsov1733@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/var-dumper": "^6.3"
+    }
 }
